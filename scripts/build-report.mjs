@@ -1,0 +1,6 @@
+import fs from 'node:fs';
+const escape=value=>value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const source=fs.readFileSync('docs/apple-music-investigation.md','utf8');
+const content=escape(source).replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g,'<a href="$2" rel="noopener noreferrer">$1</a>');
+fs.writeFileSync('public/investigation-report.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Music Lab — Investigation report</title><style>body{font-family:system-ui,sans-serif;margin:0;background:#fafafa;color:#29292d}main{max-width:980px;margin:40px auto;padding:30px;background:white;border:1px solid #e6e6eb;border-radius:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.9 system-ui,sans-serif}a{color:#ed2442}header{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:25px}header strong{font-size:22px}@media(max-width:600px){main{margin:15px;padding:20px}pre{font-size:12px}}</style><main><header><strong>Music Lab / Investigation</strong><a href="/">Back to player</a></header><pre>${content}</pre></main></html>`);
+console.log('Prepared public investigation report. Raw capture and complete Evidence remain local.');

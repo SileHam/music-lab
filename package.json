@@ -1,0 +1,20 @@
+{
+  "name": "music-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/generate-demo.mjs && node scripts/build-report.mjs && vite --host 127.0.0.1",
+    "build": "node scripts/generate-demo.mjs && node scripts/build-report.mjs && vite build",
+    "test": "node scripts/generate-demo.mjs && node --test tests/domain.test.mjs tests/library.test.mjs tests/player.test.mjs tests/catalog.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:discovery": "node tests/discovery.browser.mjs"
+  },
+  "dependencies": {
+    "music-metadata": "^11.12.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.13"
+  },
+  "packageManager": "npm@11.12.1"
+}
